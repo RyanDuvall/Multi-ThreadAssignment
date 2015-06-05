@@ -1,12 +1,57 @@
 package ryanduvall.multi_threadassignment;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    public void onCreateClick(View view) {
+        Context myContext;
+        String filename = "numbers.txt";
+        File file = new File(myContext.getFilesDir(), filename);
+        FileOutputStream outputStream;
+
+        BufferedWriter output;
+        try {
+            output = new BufferedWriter(new FileWriter(filename, true));
+
+            for(int i = 1; i <= 10; i++) {
+                String temp;
+                getString(temp).valueOf(i);
+                output.append(temp);
+                output.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onLoadClick(View view) {
+        ;
+    }
+
+    public void onClearClick(View view) {
+        ;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
